@@ -1,0 +1,46 @@
+
+##### Hardware Interface Config #####
+
+## Note: uart4 and spi1 are the same pins. Set the latter one while both on. ##
+## Note: fiq_debugger and uart0 use the same pin. Set fiq_debugger first while both on. ##
+
+intf:fiq_debugger=off
+intf:uart0=on
+#intf:uart4=off
+#intf:i2c6=off
+#intf:i2c7=off
+#intf:i2s0=off
+#intf:spdif=off
+#intf:spi1=off
+#intf:spi5=off
+#intf:pwm0=off
+#intf:pwm1=off
+#intf:pwm3a=off
+
+##### Driver Config #####
+
+conf:eth_wakeup=on
+
+##### List of device tree overlays to load. Format: overlay=<dtbo name, no extension> <dtbo2> ... #####
+
+## Note: Put dtbo files under the overlays folder. ##
+
+#
+# There are two display controller, VOPB and VOPL. 
+# The default state is VOPB connet to HDMI, VOPL to DP/mipi-dsi panel. 
+# If you want to change VOPB to DP, please modify the overlay as following:
+# 	overlay=DP_VOPB
+# If you want to change VOPL to HDMI, please modify the overlay as following:
+# 	overlay=HDMI_VOPL
+# 	
+# There are two CSI interface for camera, CSI0 and CSI1. CSI1 can switch to DSI1 for connecting mipi-dsi panel.
+# The default state is OV5647 connect CSI0, IMX219 connect CSI1.  
+# If you want to change OV5647 connect CSI1, please modify the overlay as following:
+# 	overlay=CSI1-OV5647
+# If you want to change IMX219 connect CSI0, please modify the overlay as following:
+# 	overlay=CSI0-IMX219
+# If you want to connect two mipi-dsi panel, you need switch CSI1 to DSI1, please modify the overlay as following:
+# 	overlay=panel-asus-DSI1-overlay
+#
+
+overlay=
