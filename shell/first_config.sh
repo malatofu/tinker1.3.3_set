@@ -38,25 +38,17 @@ sudo chmod +x /jydz/display/main
 
 sudo chmod +x /home/$homeusr/Desktop/*.sh
 #写入开机自启动
-line=`cat /etc/rc.local|grep -c "sh /jydz/shell/start.sh &"`
+line=`cat /etc/rc.local|grep -c "sh /jydz/system/start.sh &"`
+line1=`cat /etc/rc.local|grep -c "sh /jydz/system/rtc.sh &"`
 echo $line
+echo $line1
+if [ $line1 -eq 0 ];then
+	sudo sed -i '/exit 0$/i sh /jydz/system/rtc.sh &' /etc/rc.local
+fi
 if [ $line -eq 0 ];then
-	sudo sed -i '/exit 0$/i sh /jydz/shell/start.sh &' /etc/rc.local
+	sudo sed -i '/exit 0$/i sh /jydz/system/start.sh &' /etc/rc.local
 fi
 sudo chmod +x /etc/rc.local
 
-#添加终端链接到桌面
-sudo ln -s /usr/share/applications/lxterminal.desktop /home/$homeusr/Desktop/
-
-#修改localtime时区
-sudo mv /etc/localtime /etc/localtime.bak
-sudo ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
-
-#写入rtc
-sudo hwclock -w
-
-if [ -e /media/$homeusr/CHENJUNJIE ];then
-	sudo umount /media/$homeusr/CHENJUNJIE
-fi
-
+sudo shutdown now
 
