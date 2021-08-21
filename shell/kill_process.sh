@@ -1,6 +1,6 @@
 #! /bin/bash
 
-proc=`ps aux|grep "/jydz/shell/start.sh"|grep -v "grep"|awk '{print $2}'`
+proc=`ps aux|grep "/jydz/system/start.sh"|grep -v "grep"|awk '{print $2}'`
 echo $proc
 echo root|sudo -S kill $proc
 proc1=`ps aux|grep "/jydz/bin/main"|grep -v "grep"|awk '{print $2}'`
