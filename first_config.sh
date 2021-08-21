@@ -1,12 +1,8 @@
-#! /bin/bash
-
+#!/bin/bash
 version=v1.3.3-a
 homeusr=linaro
-
 sudo mkdir /jydz
-
 sudo cp -r `ls ./|grep -v first_config.sh|xargs` /jydz
-
 #jydz文件配置
 sudo chmod +x /jydz/backup/*
 sudo chmod +x /jydz/bin/*
@@ -22,6 +18,7 @@ sudo mv /jydz/librknn_api.so /usr/lib/
 
 #创建userdata目录
 sudo mkdir -p /userdata/jydz/pic
+sudo mkdir -p /userdata/jydz/log
 
 #display文件配置
  #移植opencv的include和lib
@@ -43,6 +40,7 @@ if [ $line -eq 0 ];then
 	sudo sed -i '/exit 0$/i sh /jydz/system/start.sh &' /etc/rc.local
 fi
 sudo chmod +x /etc/rc.local
+
 
 sudo echo "version:"$version >> /userdata/jydz/log/update.log
 
