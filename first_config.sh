@@ -44,7 +44,7 @@ if [ $line -eq 0 ];then
 fi
 sudo chmod +x /etc/rc.local
 
-echo "version:"$version >> /userdata/jydz/log/update.log
+sudo echo "version:"$version >> /userdata/jydz/log/update.log
 
 sudo shutdown now
 
