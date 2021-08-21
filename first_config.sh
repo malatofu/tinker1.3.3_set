@@ -4,24 +4,21 @@ version=v1.3.3-a
 homeusr=linaro
 
 sudo mkdir /jydz
-sudo cp ./bin /jydz/ -rf
-sudo cp ./display /jydz/ -rf
-sudo cp ./model /jydz/ -rf
-sudo cp ./shell /jydz/ -rf
-sudo cp ./system /jydz/ -rf
 
-#打开串口ttyS0
-#/boot/config.txt to enable UART function
-sudo cp /boot/config.txt /jydz/config.txt.bak
-sudo cp ./config.txt /boot/config.txt
-sudo cp ./librknn_api.so /usr/lib/
+sudo cp -r `ls ./|grep -v first_config.sh|xargs` /jydz
 
 #jydz文件配置
+sudo chmod +x /jydz/backup/*
 sudo chmod +x /jydz/bin/*
 sudo chmod +x /jydz/shell/*
 sudo chmod +x /jydz/system/*
 sudo cp /jydz/shell/kill_camera.sh /home/$homeusr/Desktop/开始移虫.sh
 
+#打开串口ttyS0
+#/boot/config.txt to enable UART function
+sudo cp /boot/config.txt /jydz/config.txt.bak
+sudo mv /jydz/config.txt /boot/config.txt
+sudo mv /jydz/librknn_api.so /usr/lib/
 
 #创建userdata目录
 sudo mkdir -p /userdata/jydz/pic
